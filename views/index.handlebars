@@ -48,9 +48,7 @@
         {{#each burgers}}
         <li>
           {{#unless devoured}}
-            {{!-- {{> burgers/burger-block devoured=false}} --}}
             {{this.id}}. {{this.burger_name}}
-            
           {{/unless}}
         </li>
         {{/each}}
@@ -58,14 +56,54 @@
     </div>
 
     <div class='col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+      
       <form class="create-form">
-        <input type="text" id="burger-name" name="name">
+          <div class="form-group">
+            <input type="text" id="burger-name" name="name">
+          </div>
         <button type="submit" id='add-burger' class='btn btn-warning btn-lg btn-block'>Submit</button>
       </form>
       
       <h3>Add your own burger!</h3>
     </div>
     <div class='col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 column'>
-      sdfsdfdsf
+        <ul>
+          {{#each burgers}}
+            <li>
+              {{#if devoured}}
+                {{this.id}}. {{this.burger_name}}
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
     </div>
 </div>
+<script>
+  $(document).ready(function() {
+
+    $("#add-burger").on("click", function(event) {
+        event.preventDefault();
+        var burger = {
+            burger_name: $("#burger-name").val().trim(),
+            devoured: false
+        };
+        console.log(burger);
+        
+        // post request
+        $.ajax("/api/burger", {
+        type: "POST",
+        data: burger
+        }).done(function() {
+          console.log("Burger created.");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+        );
+
+    });
+
+    $("#bubber").click(function(){
+        alert("You have clicked on Bubber.");
+    });
+  });
+</script>

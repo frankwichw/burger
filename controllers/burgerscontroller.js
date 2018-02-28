@@ -7,19 +7,14 @@ router.get("/", function(req, res) {
       var burgerData = {
         burgers: data
       };
-      console.log(burgerData);
       res.render("index", burgerData);
     });
 });
 
 router.post("/api/burger", function(req, res) {
-  burger.insertOne([
-    "burger_name", "devoured"
-    ], [
-    req.body.name, req.body.sleepy
-    ], function(result) {
-    // sending id of new burger back
-    res.json({id: result.insertId});
+  burger.insertOne(req.body.burger_name, req.body.devoured, function(result) {
+    // Send back the ID of the new quote
+    res.json({ id: result.insertId });
   });
 });
 
