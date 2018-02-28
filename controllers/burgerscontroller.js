@@ -2,26 +2,24 @@ var express = require("express");
 var router = express.Router();
 var burger = require("../models/burger.js");
 
-var burgerData;
-
 router.get("/", function(req, res) {
     burger.selectAll(function(data) {
-      burgerData = {
+      var burgerData = {
         burgers: data
       };
       console.log(burgerData);
+      res.render("index", burgerData);
     });
-    res.render("index", burgerData);
 });
 
 router.post("/api/burger", function(req, res) {
   burger.insertOne([
-    "name", "sleepy"
-  ], [
+    "burger_name", "devoured"
+    ], [
     req.body.name, req.body.sleepy
-  ], function(result) {
-    // Send back the ID of the new quote
-    res.json({ id: result.insertId });
+    ], function(result) {
+    // sending id of new burger back
+    res.json({id: result.insertId});
   });
 });
 
