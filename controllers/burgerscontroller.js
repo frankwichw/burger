@@ -12,9 +12,9 @@ router.get("/index", function(req, res) {
 });
 
 router.post("/api/burger", function(req, res) {
-  burger.insertOne(req.body.burger_name, req.body.devoured, function(result) {
-    // Send back the ID of the new quote
-    res.json({ id: result.insertId });
+  burger.insertOne(req.body.burger_name, function(data) {
+
+    res.json({ok:true});
   });
 });
 
@@ -23,7 +23,7 @@ router.put("/api/burger/:id", function(req, res) {
   console.log("id =" + burgerID);
 
   burger.updateOne(burgerID, function(data){
-    console.log(data);
+    res.json({ok:true});
   });
 });
 

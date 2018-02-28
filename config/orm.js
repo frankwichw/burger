@@ -9,21 +9,18 @@ var orm = {
         callback(result);
       });
     },
-    insertOne: function(burgerName, devoured, callback) {
+    insertOne: function(burgerName, callback) {
       var queryString = "INSERT INTO burgers SET ?";
       connection.query(queryString, [
         {
           burger_name: burgerName
-        },
-        {
-          devoured: devoured
         }
       ], 
       function(err, result) {
         if (err) {
           throw err;
         }
-        console.log(callback);
+        
         callback(result);
       });
     },
@@ -32,7 +29,7 @@ var orm = {
   
       connection.query(queryString, [
         {
-        devoured: 1
+        devoured: true
         },
         {
         id: burger_id
@@ -40,7 +37,7 @@ var orm = {
       ], 
       function(err, result) {
         if (err) throw err;
-        console.log(result);
+
         callback(result);
       }
       );
