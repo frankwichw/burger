@@ -70,7 +70,24 @@
     });
 
     $(".devour").on("click", function(event) {
+      var id = $(this).data("id");
+      console.log("id: " + id);
 
+      var devouredBurger = {
+        id: id
+      };
+
+      // Send the PUT request.
+      $.ajax("/api/burger/" + id, {
+        type: "PUT",
+        data: devouredBurger
+      }).then(
+        function() {
+          console.log("burger devoured");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
     });
   });
 </script>
