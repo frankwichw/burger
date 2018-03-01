@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
-  host: "localhost",
+  host: "cloud_instance_private_ip",
   user: "root",
   password: "root",
   database: "burgers_db"
