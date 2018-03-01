@@ -43,20 +43,20 @@
 </div>
 <script>
   $(document).ready(function() {
-
+    // on click event 
     $("#add-burger").on("click", function(event) {
         event.preventDefault();
+        // creating new burger object
         var burger = {
             burger_name: $("#burger-name").val().trim()
         };
-        console.log(burger);
         
-        // post request
+        // POST request
         $.ajax("/api/burger", {
         type: "POST",
         data: burger
         }).then(function() {
-          // Reload the page to get the updated list
+          // reload page
           location.reload();
         }
         );
@@ -67,20 +67,22 @@
         alert("You have clicked on Bubber.");
     });
 
+    // on click event
     $(".devour").on("click", function(event) {
+      // grabbing id of button clicked
       var id = $(this).data("id");
-
+      // creating devoured burger object
       var devouredBurger = {
         id: id
       };
 
-      // Send the PUT request.
+      // send  PUT request
       $.ajax("/api/burger/" + id, {
         type: "PUT",
         data: devouredBurger
       }).then(function() {
           console.log("burger devoured");
-          // Reload the page to get the updated list
+          // reload page
           location.reload();
         }
       );

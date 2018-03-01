@@ -1,5 +1,6 @@
+// require orm js to make model for using functions
 var orm = require("../config/orm.js");
-
+// model
 var burger = {
   selectAll: function(cb) {
     orm.selectAll(function(res){
@@ -17,5 +18,5 @@ var burger = {
     });
   }
 };
-
+// export burger
 module.exports = burger;
