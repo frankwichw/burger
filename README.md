@@ -4,7 +4,7 @@ Eat Da Burger is an app that allows you to create and eat burgers at your leisur
 ## Getting Started
 
 To get started, open your terminal, navigate to the burger directory, and then enter:
-`npm init`
+`npm install`
 This will install all the node modules needed to run this program.
 
 ### Prerequisites
